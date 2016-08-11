@@ -7,7 +7,6 @@ public class Person {
 
     private String name;
     private Integer age;
-    private House house;
 
     public Person(String name, Integer age) {
         this.name = name;
@@ -30,16 +29,4 @@ public class Person {
         this.age = age;
     }
 
-    public House getHouse() {
-        return house;
-    }
-
-    public void setHouse(House house) {
-        this.house = house;
-    }
-
-
-    public Integer getHouseNum(){
-        return house.getHouseNum();
-    }
 }
