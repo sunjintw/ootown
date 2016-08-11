@@ -5,10 +5,12 @@ package com.thoughtworks.ootown.Model;
  */
 public class Person {
 
+    private String idNum;
     private String name;
     private Integer age;
 
-    public Person(String name, Integer age) {
+    public Person(String idNum, String name, Integer age) {
+        this.idNum = idNum;
         this.name = name;
         this.age = age;
     }
@@ -27,6 +29,10 @@ public class Person {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getIdNum() {
+        return idNum;
     }
 
 }

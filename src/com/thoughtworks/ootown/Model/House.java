@@ -5,9 +5,9 @@ package com.thoughtworks.ootown.Model;
  */
 public class House {
     private Integer houseNum;
-    private Integer size;
+    private Double size;
 
-    public House(Integer houseNum, Integer size) {
+    public House(Integer houseNum, Double size) {
         this.houseNum = houseNum;
         this.size = size;
     }
@@ -20,11 +20,11 @@ public class House {
         this.houseNum = houseNum;
     }
 
-    public Integer getSize() {
+    public Double getSize() {
         return size;
     }
 
-    public void setSize(Integer size) {
+    public void setSize(Double size) {
         this.size = size;
     }
 }
