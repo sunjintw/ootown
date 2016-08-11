@@ -38,4 +38,13 @@ public class AdminTest {
         assertEquals("Failed", resultB);
         assertEquals("cy", admin.getPersonName(1));
     }
+
+    @org.junit.Test
+    public void shouldFailedRegisterWhenThereIsNoHouse() throws Exception {
+        Person person = new Person("xf", 18);
+
+        String result = person.applyHouse(admin);
+
+        assertEquals("Failed", result);
+    }
 }

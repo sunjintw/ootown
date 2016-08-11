@@ -8,19 +8,18 @@ import java.util.List;
  * Created by xifzhang on 11/08/16.
  */
 public class Admin {
-    private Integer houseNum;
     private List<House> houseList = new ArrayList<House>();
     private HashMap registerMap = new HashMap();
 
-    private Integer getHouseNum() {
+    private Integer getHouseCount() {
         return houseList.size();
     }
 
     private boolean hasEmptyHouse() {
-        return this.getHouseNum() > 0;
+        return this.getHouseCount() > 0;
     }
 
-    private Integer getHouse() {
+    private Integer provideHouse() {
         if(hasEmptyHouse()) {
             House house = houseList.remove(0);
             return house.getHouseNum();
@@ -33,7 +32,7 @@ public class Admin {
     }
 
     public String register(Person person) {
-        Integer houseNum = getHouse();
+        Integer houseNum = provideHouse();
         if(houseNum > 0) {
             registerMap.put(houseNum, person.getName());
             return "Successfully";
