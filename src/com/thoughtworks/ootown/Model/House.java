@@ -14,16 +14,4 @@ public class House {
     public Integer getHouseNum() {
         return houseNum;
     }
-
-    public void setHouseNum(Integer houseNum) {
-        this.houseNum = houseNum;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
 }
