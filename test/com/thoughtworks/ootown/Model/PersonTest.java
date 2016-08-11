@@ -14,7 +14,8 @@ public class PersonTest {
     }
 
     @org.junit.Test
-    public void getHouseNum() throws Exception {
+    public void shouldSuccessApplyWhenThereAreEmtyptHouses() throws Exception {
+
         assertEquals("Sicong Wang", person.getName());
     }
 

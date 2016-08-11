@@ -7,9 +7,8 @@ public class House {
     private Integer houseNum;
     private Integer size;
 
-    public House(Integer houseNum, Integer size) {
+    public House(Integer houseNum) {
         this.houseNum = houseNum;
-        this.size = size;
     }
 
     public Integer getHouseNum() {
