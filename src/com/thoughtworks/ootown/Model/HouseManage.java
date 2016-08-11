@@ -32,8 +32,7 @@ public class HouseManage {
         String personIdNum = person.getIdNum();
         boolean registerFlag = false;
         if(!registers.containsKey(personIdNum)){
-            int registerHouseNum = getRegisterHouseNum();
-            registers.put(personIdNum, registerHouseNum);
+            registers.put(personIdNum, getRegisterHouseNum());
             registerFlag = true;
         }
         return registerInfo(registerFlag, person.getName(), registers.get(personIdNum));
