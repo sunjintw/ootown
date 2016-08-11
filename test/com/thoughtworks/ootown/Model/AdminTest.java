@@ -16,8 +16,6 @@ public class AdminTest {
     @org.junit.Test
     public void shouldSuccessRegisterWhenThereAreEmtyptHouse() throws Exception {
         admin.setHouse(new House(1));
-        admin.setHouse(new House(2));
-        admin.setHouse(new House(3));
         Person person = new Person("xf", 18);
 
         String result = person.applyHouse(admin);
@@ -27,4 +25,17 @@ public class AdminTest {
         assertEquals("xf", personName);
     }
 
+    @org.junit.Test
+    public void shouldFailedRegisterWhenThereIsNoEmptyHouse() throws Exception {
+        admin.setHouse(new House(1));
+        Person personA = new Person("cy", 28);
+        Person personB = new Person("xf", 18);
+
+        String resultA = personA.applyHouse(admin);
+        String resultB = personB.applyHouse(admin);
+
+        assertEquals("Successfully", resultA);
+        assertEquals("Failed", resultB);
+        assertEquals("cy", admin.getPersonName(1));
+    }
 }

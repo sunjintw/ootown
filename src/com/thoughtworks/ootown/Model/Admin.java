@@ -36,7 +36,7 @@ public class Admin {
         Integer houseNum = getHouse();
         if(houseNum > 0) {
             registerMap.put(houseNum, person.getName());
-            return "Succssfully";
+            return "Successfully";
         }
         return "Failed";
     }
