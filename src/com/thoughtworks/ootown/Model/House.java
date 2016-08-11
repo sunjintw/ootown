@@ -5,7 +5,6 @@ package com.thoughtworks.ootown.Model;
  */
 public class House {
     private Integer houseNum;
-    private Integer size;
 
     public House(Integer houseNum) {
         this.houseNum = houseNum;

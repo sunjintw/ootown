@@ -21,4 +21,8 @@ public class Person {
        return admin.register(this);
     }
 
+    public String cancelHouse(Admin admin) {
+        return admin.unRegister(this);
+    }
+
 }

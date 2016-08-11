@@ -47,4 +47,15 @@ public class AdminTest {
 
         assertEquals("Failed", result);
     }
+
+    @org.junit.Test
+    public void shouldSuccessUnRegisterWhenRegisteredPersonWantToCancel() throws Exception {
+        admin.setHouse(new House(1));
+        Person person = new Person("xf", 18);
+        person.applyHouse(admin);
+
+        String result = person.cancelHouse(admin);
+
+        assertEquals("Successfully", result);
+    }
 }

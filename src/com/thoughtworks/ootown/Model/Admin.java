@@ -3,6 +3,7 @@ package com.thoughtworks.ootown.Model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by xifzhang on 11/08/16.
@@ -42,5 +43,21 @@ public class Admin {
 
     public String getPersonName(Integer houseNum) {
         return (String)this.registerMap.get(houseNum);
+    }
+
+    public String unRegister(Person person) {
+        Integer houseNum = -1;
+        for(Object key : registerMap.keySet()) {
+            String personName = (String)registerMap.get(key);
+            if(personName == person.getName()) {
+                houseNum = (Integer)key;
+            }
+        }
+        if(houseNum > 0) {
+            House newHouse = new House(houseNum);
+            this.houseList.add(newHouse);
+            return "Successfully";
+        }
+        return "Failed";
     }
 }
