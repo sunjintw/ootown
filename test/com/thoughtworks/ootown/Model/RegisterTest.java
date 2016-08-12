@@ -16,7 +16,8 @@ public class RegisterTest {
 
         @org.junit.Test
         public void getHouseNum() throws Exception {
-            String person ="chenyu";
+
+            Person person = new Person("chenyu", 20);
             boolean new_person = register.register(person);
             boolean exist_person = register.register(person);
             boolean success = register.record.containsKey(person);

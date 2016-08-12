@@ -29,4 +29,8 @@ public class Person {
         this.age = age;
     }
 
+    public boolean samePerson(Person personB){
+        return this.getName().equals(personB.getName()) && this.getAge() == personB.getAge();
+    }
+
 }

@@ -17,10 +17,16 @@ public class Hotel {
 
         boolean room_available = temp.check_room_available(wanted_room_count);
         if(room_available) {
-            System.out.println("Please input renter information");
+
             for(int i = 0; i < wanted_room_count; i++) {
+                System.out.print("Please input renter user name:");
                 String userName = scanner.next();
-                temp.register(userName);
+                System.out.print("Please input renter user age:");
+                int age = scanner.nextInt();
+                boolean fail = temp.register(new Person(userName, age));
+                if(fail) {
+                    i--;
+                }
             }
         }else {
             System.out.println("Room is not available");
