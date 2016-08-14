@@ -28,33 +28,37 @@ public class Register {
     }
 
     public boolean register(Person person) {
-        boolean has_house = check_has_house(person);
-        if(has_house) {
+        boolean hasHouse = checkHasHouse(person);
+        if(hasHouse) {
             System.out.println(person.getName() + " have already get a house, Denied!");
             return false;
         } else {
-            located_room(person);
+            locatedRoom(person);
             System.out.println(person.getName() +" have register a new house, house size is "+ record.get(person)) ;
             return true;
         }
     }
 
+    public boolean checkRoomAvailable(int wantedCount) {
+        return houses.size() >= wantedCount;
+    }
+
     private List<String> getAvailableRoom() {
         Collection<String> located_house = record.values();
-        List<String> temp_houses = houses;
-        temp_houses.removeAll(located_house);
-        return temp_houses;
+        List<String> availableHouses = houses;
+        availableHouses.removeAll(located_house);
+        return availableHouses;
     }
 
-    private void located_room(Person person){
-        List<String> available_room = getAvailableRoom();
-        int house_num = get_random_house_num(available_room.size());
-        record.put(person, houses.get(house_num));
+    private void locatedRoom(Person person){
+        List<String> availableHouses = getAvailableRoom();
+        int roomNum = getRandomHouseNum(availableHouses.size());
+        record.put(person, houses.get(roomNum));
     }
 
-    private boolean check_has_house(Person person) {
-        for(Person tmp: record.keySet()) {
-            if(tmp.samePerson(person)) {
+    private boolean checkHasHouse(Person person) {
+        for(Person p: record.keySet()) {
+            if(p.isSamePerson(person)) {
                 return true;
             }
         }
@@ -62,11 +66,7 @@ public class Register {
 
     }
 
-    public boolean check_room_available(int wanted_count) {
-        return houses.size() >= wanted_count;
-    }
-
-    private int get_random_house_num(int house_amount) {
+    private int getRandomHouseNum(int house_amount) {
         return (int)(Math.random()*house_amount);
     }
 

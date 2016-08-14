@@ -23,13 +23,17 @@ public class PersonTest {
     @Test
     public void samePerson() throws Exception {
         Person new_person = new Person("Sicong Wang", 27);
-        boolean same_person = person.samePerson(new_person);
+
+        boolean same_person = person.isSamePerson(new_person);
+
         assertTrue(same_person);
     }
     @Test
     public void notSamePerson() throws Exception {
         Person new_person = new Person("Sicong Wang", 17);
-        boolean not_same = person.samePerson(new_person);
+
+        boolean not_same = person.isSamePerson(new_person);
+
         assertFalse(not_same);
     }
 }
