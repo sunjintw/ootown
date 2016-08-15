@@ -9,10 +9,10 @@ import java.util.Objects;
  * Created by xifzhang on 11/08/16.
  */
 public class Admin {
-    private SafeList houseList;
+    private List<House> houseList;
     private HashMap registerMap;
 
-    public Admin(SafeList houseList) {
+    public Admin(List<House> houseList) {
         this.houseList = houseList;
         this.registerMap = new HashMap();
     }
@@ -25,12 +25,14 @@ public class Admin {
         return this.getHouseCount() > 0;
     }
 
-    private Integer provideHouse() {
-        if(hasEmptyHouse()) {
-            House house = houseList.remove(0);
-            return house.getHouseNum();
+    private int provideHouse() {
+        synchronized (houseList) {
+            if(hasEmptyHouse()) {
+                House house = houseList.remove(0);
+                return house.getHouseNum();
+            }
+            return -1;
         }
-        return -1;
     }
 
     public String register(Person person) {

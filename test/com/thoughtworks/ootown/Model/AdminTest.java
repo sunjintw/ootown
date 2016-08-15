@@ -5,15 +5,12 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by jsun on 8/6/16.
- */
 public class AdminTest {
     Admin admin;
-    SafeList houseList;
+    List<House> houseList;
     @org.junit.Before
     public void setUp() throws Exception {
-        houseList = new SafeList(new ArrayList<House>());
+        houseList = new ArrayList<House>();
         admin = new Admin(houseList);
     }
 
@@ -61,5 +58,42 @@ public class AdminTest {
         String result = person.cancelHouse(admin);
 
         assertEquals("Successfully", result);
+    }
+
+    @org.junit.Test
+    public void shouldWorkFineWhenThereAreTwoAdminsToRegisterTheSameHouses() throws Exception {
+        for(int i = 0;i < 300;i++) {
+            houseList.add(new House(i));
+        }
+        final Admin admin1 = new Admin(houseList);
+        final Admin admin2 = new Admin(houseList);
+        final Person[] group1 = new Person[300];
+        final Person[] group2 = new Person[300];
+        final Person[] group3 = new Person[300];
+        for(int j = 0;j < 300;j++) {
+            group1[j] = new Person("xf" + j+1, j+1);
+            group2[j] = new Person("amanda" + j+1, j+1);
+            group3[j] = new Person("jason" + j+1, j+1);
+
+        }
+        Thread t1 = new Thread(new Runnable(){
+            public void run(){
+                for (Person person : group1) {
+                    person.applyHouse(admin1);
+                }
+            }
+        });
+        Thread t2 = new Thread(new Runnable(){
+            public void run(){
+                for (Person person : group2) {
+                    person.applyHouse(admin2);
+                }
+            }
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        assertEquals(0, houseList.size());
     }
 }
