@@ -10,10 +10,10 @@ import static org.junit.Assert.*;
  */
 public class AdminTest {
     Admin admin;
-    List<House> houseList;
+    SafeList houseList;
     @org.junit.Before
     public void setUp() throws Exception {
-        houseList = new ArrayList<>();
+        houseList = new SafeList(new ArrayList<House>());
         admin = new Admin(houseList);
     }
 

@@ -9,10 +9,10 @@ import java.util.Objects;
  * Created by xifzhang on 11/08/16.
  */
 public class Admin {
-    private List<House> houseList;
+    private SafeList houseList;
     private HashMap registerMap;
 
-    public Admin(List<House> houseList) {
+    public Admin(SafeList houseList) {
         this.houseList = houseList;
         this.registerMap = new HashMap();
     }
