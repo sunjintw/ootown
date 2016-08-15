@@ -24,4 +24,13 @@ public class RegisterTest {
         int room_number_for_jing = register.signUp("Jing");
         assertEquals(1, room_number_for_jing);
     }
+
+    @org.junit.Test
+    public void getNoRoomWhenFourthPersonCome() throws Exception {
+        register.signUp("First person");
+        register.signUp("Second person");
+        register.signUp("Third person");
+        int room_number_for_jing = register.signUp("Jing");
+        assertEquals(0, room_number_for_jing);
+    }
 }
