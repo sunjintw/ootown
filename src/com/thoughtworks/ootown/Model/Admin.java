@@ -9,8 +9,13 @@ import java.util.Objects;
  * Created by xifzhang on 11/08/16.
  */
 public class Admin {
-    private List<House> houseList = new ArrayList<House>();
-    private HashMap registerMap = new HashMap();
+    private List<House> houseList;
+    private HashMap registerMap;
+
+    public Admin(List<House> houseList) {
+        this.houseList = houseList;
+        this.registerMap = new HashMap();
+    }
 
     private Integer getHouseCount() {
         return houseList.size();
@@ -26,10 +31,6 @@ public class Admin {
             return house.getHouseNum();
         }
         return -1;
-    }
-
-    public void setHouse(House house) {
-        this.houseList.add(house);
     }
 
     public String register(Person person) {

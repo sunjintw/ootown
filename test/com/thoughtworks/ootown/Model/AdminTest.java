@@ -1,5 +1,8 @@
 package com.thoughtworks.ootown.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -7,15 +10,16 @@ import static org.junit.Assert.*;
  */
 public class AdminTest {
     Admin admin;
-
+    List<House> houseList;
     @org.junit.Before
     public void setUp() throws Exception {
-         admin = new Admin();
+        houseList = new ArrayList<>();
+        admin = new Admin(houseList);
     }
 
     @org.junit.Test
     public void shouldSuccessRegisterWhenThereAreEmtyptHouse() throws Exception {
-        admin.setHouse(new House(1));
+        houseList.add(new House(1));
         Person person = new Person("xf", 18);
 
         String result = person.applyHouse(admin);
@@ -27,7 +31,7 @@ public class AdminTest {
 
     @org.junit.Test
     public void shouldFailedRegisterWhenThereIsNoEmptyHouse() throws Exception {
-        admin.setHouse(new House(1));
+        houseList.add(new House(1));
         Person personA = new Person("cy", 28);
         Person personB = new Person("xf", 18);
 
@@ -50,7 +54,7 @@ public class AdminTest {
 
     @org.junit.Test
     public void shouldSuccessUnRegisterWhenRegisteredPersonWantToCancel() throws Exception {
-        admin.setHouse(new House(1));
+        houseList.add(new House(1));
         Person person = new Person("xf", 18);
         person.applyHouse(admin);
 
