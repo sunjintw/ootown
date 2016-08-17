@@ -7,8 +7,10 @@ import java.util.*;
  */
 
 public class Register {
-    private List houses = new ArrayList<House>();
-    private HashMap<String, House> registers = new HashMap<String, House>();
+    private static List houses = new ArrayList<House>();
+    private static HashMap<String, House> registers = new HashMap<String, House>();
+
+    public Register() {}
 
     public Register(List houses) {
         this.houses = houses;
