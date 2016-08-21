@@ -9,33 +9,48 @@ import java.util.HashMap;
 public class HouseManage {
 
     public static HashMap<String, Integer> registers = new HashMap();
-    public static ArrayList houses = new ArrayList();
+    public VillaDistrict villas = VillaDistrict.getUniqueInstance();
+    private final int emptyHouse = 0;
 
     public HouseManage(){}
 
-    public HouseManage(Double houseSize){
-        int newHouseNum = getNewHouseNum();
-        new House(newHouseNum,houseSize);
-        houses.add(newHouseNum);
-    }
-
-    private int getNewHouseNum(){ return houses.size() + 1; }
 
     public int getRegisterHouseNum(){
         ArrayList<Integer> registeredHouseNums = new ArrayList(registers.values());
-        ArrayList<Integer> housesNums = houses;
+        ArrayList<Integer> housesNums = villas.getHousesNum();
         housesNums.removeAll(registeredHouseNums);
-        return housesNums.size() > 0 ? housesNums.get(0) : 0;
+        return housesNums.size() > 0 ? housesNums.get(0) : emptyHouse;
+    }
+
+    private int getRegisteredHouseNum(String personIdNum){
+        return registers.get(personIdNum);
+    }
+
+    private boolean isRegisted(String personIdNum){
+        return registers.containsKey(personIdNum);
     }
 
     public String register(Person person) {
         String personIdNum = person.getIdNum();
         boolean registerFlag = false;
-        if(!registers.containsKey(personIdNum)){
+        if(!isRegisted(personIdNum)){
             registers.put(personIdNum, getRegisterHouseNum());
             registerFlag = true;
         }
-        return registerInfo(registerFlag, person.getName(), registers.get(personIdNum));
+        return registerInfo(registerFlag, person.getName(), getRegisteredHouseNum(personIdNum));
+    }
+
+    public String remove(Person person) {
+        String personIdNum = person.getIdNum();
+        boolean removeFlag = false;
+        int houseNum = emptyHouse;
+        if(isRegisted(personIdNum)){
+            houseNum = getRegisteredHouseNum(personIdNum);
+            registers.remove(personIdNum);
+            removeFlag = true;
+        }
+        return removeInfo(removeFlag, person.getName(), houseNum);
+
     }
 
     private String registerInfo(boolean registerFlag, String name, int houseNum){
@@ -49,6 +64,19 @@ public class HouseManage {
             }
         }else{
             return "Sorry, Mr/Miss " + name + ". No houses available now.";
+        }
+    }
+
+    private String removeInfo(boolean removeFlag, String name, int houseNum){
+        if(removeFlag){
+            if(houseNum == 0){
+                return "Dear Mr/Miss " + name + ", you have cancel Register Successfully.";
+            }else{
+                return "Dear Mr/Miss " + name + ", you have cancel House " + houseNum + "Successfully.";
+            }
+
+        }else{
+            return "Failed! Sorry, Mr/Miss " + name + "you have not registered";
         }
     }
 

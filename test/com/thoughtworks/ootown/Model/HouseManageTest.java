@@ -11,12 +11,15 @@ public class HouseManageTest {
 
     HouseManage manage2 = new HouseManage();
 
+    VillaDistrict villaDistrict = VillaDistrict.getUniqueInstance();
+
     @org.junit.Before
     public void setUp() throws Exception {
-        new HouseManage(100.00);
-        new HouseManage(100.00);
-        new HouseManage(200.00);
-        new HouseManage(120.00);
+
+        villaDistrict.initVillas(100.00);
+        villaDistrict.initVillas(100.00);
+        villaDistrict.initVillas(200.00);
+        villaDistrict.initVillas(120.00);
     }
 
     @org.junit.Test
@@ -38,18 +41,29 @@ public class HouseManageTest {
     }
 
     @org.junit.Test
-    public void register() throws Exception {
+    public void registerWithFirstTime() throws Exception {
 
         Person Danny = new Person("123", "Danny", 20);
 
         String firstRegisterInfo = manage1.register(Danny);
         assertEquals("Congratulations! Dear Mr/Miss Danny, you have registered House 1 Successfully.",
                      firstRegisterInfo);
+    }
+
+    @org.junit.Test
+    public void registerWithAgain() throws Exception {
+        registerWithFirstTime();
+        Person Danny = new Person("123", "Danny", 20);
 
         String RegisterAgainInfo = manage2.register(Danny);
-        System.out.println(RegisterAgainInfo);
+
         assertEquals("Failed! Sorry, Mr/Miss Danny, you have already registered 1 . Please have a check.",
-                     RegisterAgainInfo);
+                RegisterAgainInfo);
+    }
+
+    @org.junit.Test
+    public void registerWithNoHouseAvailable() throws Exception {
+        registerWithFirstTime();
 
         Person Joy = new Person("234", "Joy", 20);
         manage2.register(Joy);
@@ -65,9 +79,6 @@ public class HouseManageTest {
         String noHouseInfo = manage1.register(Jay);
 
         assertEquals("Sorry, Mr/Miss Jay. No houses available now.", noHouseInfo);
-
     }
-
-
 
 }
