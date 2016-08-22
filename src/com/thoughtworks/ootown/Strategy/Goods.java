@@ -4,8 +4,8 @@ package com.thoughtworks.ootown.Strategy;
  * Created by xyduan on 8/22/16.
  */
 public class Goods {
-    String name;
-    Double price;
+    private String name;
+    private Double price;
 
     public Goods(String name, double price){
         this.name = name;

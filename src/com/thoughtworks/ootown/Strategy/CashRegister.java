@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * Created by xyduan on 8/20/16.
  */
 public class CashRegister {
-    private double originPrice;
     private IDiscount iDiscount;
     private ArrayList<Goods> goodsList = new ArrayList();
 
