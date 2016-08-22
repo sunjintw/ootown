@@ -1,5 +1,7 @@
 package com.thoughtworks.ootown.Strategy;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 /**
@@ -7,33 +9,69 @@ import static org.junit.Assert.*;
  */
 public class CashRegisterTest {
 
+
     @org.junit.Before
     public void setUp(){
 
     }
 
     @org.junit.Test
+    public void DirectDiscountPriceWithoutDiscount() throws Exception{
+        Goods apple = new Goods("apple", 50.00);
+        Goods orange = new Goods("orange", 50.00);
+        ArrayList<Goods> goodsList = new ArrayList();
+        goodsList.add(apple);
+        goodsList.add(orange);
+        CashRegister cash = new CashRegister(goodsList);
+
+        IDiscount iDiscount = new DirectoryDiscount();
+        cash.setiDiscount(iDiscount);
+        cash.displayBill();
+    }
+
+    @org.junit.Test
+    public void DirectDiscountPriceWithDiscount() throws Exception{
+        Goods apple = new Goods("apple", 50.00);
+        Goods orange = new Goods("orange", 50.00);
+        ArrayList<Goods> goodsList = new ArrayList();
+        goodsList.add(apple);
+        goodsList.add(orange);
+        CashRegister cash = new CashRegister(goodsList);
+
+        IDiscount iDiscount = new DirectoryDiscount(0.30);
+        cash.setiDiscount(iDiscount);
+        cash.displayBill();
+    }
+
+    @org.junit.Test
     public void BuyAndReducePrice() throws Exception{
+
+        Goods apple = new Goods("apple", 50.00);
+        Goods orange = new Goods("orange", 50.00);
+        ArrayList<Goods> goodsList = new ArrayList();
+        goodsList.add(apple);
+        goodsList.add(orange);
+        CashRegister cash = new CashRegister(goodsList);
+
         IDiscount iDiscount = new BuyAndReduce();
-        double price = 100.00;
-        CashRegister cash = new CashRegister(iDiscount,price);
-        cash.displaBill();
+        cash.setiDiscount(iDiscount);
+        cash.displayBill();
     }
 
     @org.junit.Test
     public void ReturnCreditPrice() throws Exception{
+        Goods apple = new Goods("apple", 50.00);
+        Goods orange = new Goods("orange", 50.00);
+        ArrayList<Goods> goodsList = new ArrayList();
+        goodsList.add(apple);
+        goodsList.add(orange);
+        CashRegister cash = new CashRegister(goodsList);
+
         IDiscount iDiscount = new ReturnCredit();
-        double price = 100.00;
-        CashRegister cash = new CashRegister(iDiscount,price);
-        cash.displaBill();
+        cash.setiDiscount(iDiscount);
+        cash.displayBill();
     }
 
-    @org.junit.Test
-    public void DirectDiscountPrice() throws Exception{
-        IDiscount iDiscount = new DirectoryDiscount();
-        double price = 100.00;
-        CashRegister cash = new CashRegister(iDiscount,price);
-        cash.displaBill();
-    }
+
 
 }
