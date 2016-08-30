@@ -1,6 +1,6 @@
 package com.thoughtworks.ootown.Model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by jsun on 8/6/16.
